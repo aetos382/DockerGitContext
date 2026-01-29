@@ -11,16 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: docker/setup-docker-action@v4
+      - uses: docker/setup-buildx-action@v3
+
       - name: just clone repository
         run: |
           git clone https://github.com/aetos382/DockerGitContext.git
           git clone https://gitlab.eclipse.org/eclipse/asciidoc-lang/asciidoc-tck.git
-
-      - uses: docker/setup-docker-action@v4
-      - uses: docker/setup-buildx-action@v3
+          ls -laR
 
       - name: build-only-dockerfile
         uses: docker/build-push-action@v6
+        if: always()
         with:
           file: build-only-dockerfile.dockerfile
           load: true
@@ -28,6 +30,7 @@ jobs:
 
       - name: build-with-additional-context-github
         uses: docker/build-push-action@v6
+        if: always()
         with:
           file: build-with-additional-context.dockerfile
           build-contexts: |
@@ -37,6 +40,7 @@ jobs:
 
       - name: build-with-additional-context-gitlab
         uses: docker/build-push-action@v6
+        if: always()
         with:
           file: build-with-additional-context.dockerfile
           build-contexts: |
