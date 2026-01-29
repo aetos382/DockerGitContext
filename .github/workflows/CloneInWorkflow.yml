@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: docker/setup-docker-action@v4
-      - uses: docker/setup-buildx-action@v3
+#      - uses: docker/setup-buildx-action@v3
 
       - name: just clone repository
         run: |
@@ -37,16 +37,6 @@ jobs:
             additional-context=https://github.com/aetos382/DockerGitContext.git
           load: true
           tags: build-with-additional-context-github:latest
-
-      - name: build-with-additional-context-github2
-        uses: docker/build-push-action@v6
-        if: always()
-        with:
-          file: build-with-additional-context.dockerfile
-          build-contexts: |
-            additional-context=https://github.com/docker/build-push-action.git
-          load: true
-          tags: build-with-additional-context-github2:latest
 
       - name: build-with-additional-context-gitlab
         uses: docker/build-push-action@v6
