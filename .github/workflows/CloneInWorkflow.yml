@@ -1,0 +1,16 @@
+name: CloneInWorkflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+    execute:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Clone Another Repository
+          run: |
+            git clone https://github.com/aetos382/DockerGitContext.git
