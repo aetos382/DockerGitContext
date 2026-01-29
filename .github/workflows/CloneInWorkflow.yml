@@ -22,7 +22,7 @@ jobs:
       - name: build-only-dockerfile
         uses: docker/build-push-action@v6
         with:
-          file: build-only-dockerfile
+          file: build-only-dockerfile.dockerfile
           load: true
           tags: build-only-dockerfile:latest
 
