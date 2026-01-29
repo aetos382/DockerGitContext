@@ -23,6 +23,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           file: build-only-dockerfile
+          load: true
           tags: build-only-dockerfile:latest
 
       - name: build-with-additional-context-github
@@ -31,6 +32,7 @@ jobs:
           file: build-with-additional-context.dockerfile
           build-contexts: |
             additional-context=https://github.com/aetos382/DockerGitContext.git
+          load: true
           tags: build-with-additional-context-github:latest
 
       - name: build-with-additional-context-gitlab
@@ -39,4 +41,5 @@ jobs:
           file: build-with-additional-context.dockerfile
           build-contexts: |
             additional-context=https://gitlab.eclipse.org/eclipse/asciidoc-lang/asciidoc-tck.git
+          load: true
           tags: build-with-additional-context-gitlab:latest
