@@ -14,3 +14,4 @@ jobs:
         - name: Clone Another Repository
           run: |
             git clone https://github.com/aetos382/DockerGitContext.git
+            git clone https://gitlab.eclipse.org/eclipse/asciidoc-lang/asciidoc-tck.git
