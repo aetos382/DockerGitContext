@@ -9,26 +9,19 @@ on:
 jobs:
   execute:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_STEP_DEBUG: true
 
     steps:
-      - uses: docker/setup-docker-action@v4
       - uses: docker/setup-buildx-action@v3
+        with:
+          buildkitd-flags: --debug
 
       - name: just clone repository
         run: |
           git clone https://github.com/aetos382/DockerGitContext.git
           git clone https://gitlab.eclipse.org/eclipse/asciidoc-lang/asciidoc-tck.git
           ls -laR
-
-      - name: build-with-additional-context-github
-        uses: docker/build-push-action@v6
-        if: always()
-        with:
-          file: build-with-additional-context.dockerfile
-          build-contexts: |
-            additional-context=https://github.com/aetos382/DockerGitContext.git
-          load: true
-          tags: build-with-additional-context-github:latest
 
       - name: build-with-additional-context-gitlab
         uses: docker/build-push-action@v6
